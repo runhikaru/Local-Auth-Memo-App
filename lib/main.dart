@@ -143,7 +143,6 @@ class _LoginPageState extends State<LoginPage> {
         _isAuthenticating = false;
         _authorized = 'Authenticating';
       });
-      print("1");
     } on PlatformException catch (e) {
       print(e);
       setState(() {
@@ -179,6 +178,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       home: Scaffold(
         body: Center(

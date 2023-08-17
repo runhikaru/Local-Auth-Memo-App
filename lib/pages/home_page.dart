@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:memo_lock_app/main.dart';
 
-import 'app_page.dart';
+import 'memo_page.dart';
 import 'device_page.dart';
 import 'mail_page.dart';
 import 'other_page.dart';
@@ -50,9 +50,7 @@ class _HomePageState extends State<HomePage> {
                       setState(() => this.index = index),
                   leading: IconButton(
                       onPressed: () {
-                        // setState(() => isExtended = !isExtended);
-                        Navigator.push(context,
-                        MaterialPageRoute(builder: (cotext) => LoginPage()));
+                        setState(() => isExtended = !isExtended);
                       },
                       icon: isExtended
                           ? const Icon(Icons.keyboard_double_arrow_left_rounded,

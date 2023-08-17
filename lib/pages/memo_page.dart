@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../main.dart';
+
 class MemoPage extends StatefulWidget {
   const MemoPage({Key? key}) : super(key: key);
 
@@ -36,30 +38,26 @@ class _MemoPageState extends State<MemoPage> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    print("dispose");
     WidgetsBinding.instance.removeObserver(this);
     save('app', appController.text);
-    print("contText ${appController.text}");
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    print("stete = $state");
     switch (state) {
       case AppLifecycleState.inactive:
-        print('非アクティブになったときの処理');
+        //非アクティブになったときの処理
         break;
       case AppLifecycleState.paused:
-        print('停止されたときの処理');
+        //停止されたときの処理
         break;
       case AppLifecycleState.resumed:
-        print('再開されたときの処理');
+        //再開されたときの処理
         break;
       case AppLifecycleState.detached:
-        print('破棄されたときの処理');
+        //破棄されたときの処理
         save('app', appController);
-        print("controller : $appController  +  contText ${appController.text}");
 
         break;
     }

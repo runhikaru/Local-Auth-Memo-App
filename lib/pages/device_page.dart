@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../main.dart';
+
 class LifePage extends StatefulWidget {
   const LifePage({Key? key}) : super(key: key);
 
@@ -35,31 +37,26 @@ class _LifePageState extends State<LifePage> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    print("dispose");
     WidgetsBinding.instance.removeObserver(this);
     save('device', deviceController.text);
-    print("contText ${deviceController.text}");
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    print("stete = $state");
     switch (state) {
       case AppLifecycleState.inactive:
-        print('非アクティブになったときの処理');
+        //非アクティブになったときの処理
         break;
       case AppLifecycleState.paused:
-        print('停止されたときの処理');
+        //停止されたときの処理
         break;
       case AppLifecycleState.resumed:
-        print('再開されたときの処理');
+        //再開されたときの処理
         break;
       case AppLifecycleState.detached:
-        print('破棄されたときの処理');
+        //破棄されたときの処理
         save('device', deviceController);
-        print(
-            "controller : $deviceController  +  contText ${deviceController.text}");
 
         break;
     }
@@ -70,34 +67,33 @@ class _LifePageState extends State<LifePage> with WidgetsBindingObserver {
     return SafeArea(
       child: Scaffold(
           body: Visibility(
-            visible: isLoaded,
-            child: SafeArea(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    width: double.infinity,
-                    child: TextField(
-                        controller: deviceController,
-                        onChanged: (text) {
-                          print("4");
-                          setState(() {
-                            save('device', text);
-                          });
-                        },
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 25),
-                        maxLines: 200,
-                        decoration: const InputDecoration(
-                            hintText: '画面ロック 1234',
-                            hintStyle:
-                                TextStyle(color: Colors.grey, fontSize: 18))),
-                  ),
-                ),
+        visible: isLoaded,
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                width: double.infinity,
+                child: TextField(
+                    controller: deviceController,
+                    onChanged: (text) {
+                      print("4");
+                      setState(() {
+                        save('device', text);
+                      });
+                    },
+                    style: const TextStyle(color: Colors.white, fontSize: 25),
+                    maxLines: 200,
+                    decoration: const InputDecoration(
+                        hintText: '画面ロック 1234',
+                        hintStyle:
+                            TextStyle(color: Colors.grey, fontSize: 18))),
               ),
             ),
-          )),
+          ),
+        ),
+      )),
     );
   }
 }

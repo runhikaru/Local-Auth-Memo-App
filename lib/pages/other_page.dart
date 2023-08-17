@@ -35,31 +35,26 @@ class _OtherPageState extends State<OtherPage> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    print("dispose");
     WidgetsBinding.instance.removeObserver(this);
     save('other', otherController.text);
-    print("contText ${otherController.text}");
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    print("stete = $state");
     switch (state) {
       case AppLifecycleState.inactive:
-        print('非アクティブになったときの処理');
+        //非アクティブになったときの処理
         break;
       case AppLifecycleState.paused:
-        print('停止されたときの処理');
+        //停止されたときの処理
         break;
       case AppLifecycleState.resumed:
-        print('再開されたときの処理');
+        //再開されたときの処理
         break;
       case AppLifecycleState.detached:
-        print('破棄されたときの処理');
-        save('mail', otherController);
-        print(
-            "controller : $otherController  +  contText ${otherController.text}");
+        //破棄されたときの処理
+        save('other', otherController);
 
         break;
     }
